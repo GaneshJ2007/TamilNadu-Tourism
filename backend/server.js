@@ -23,7 +23,13 @@ const groq = new Groq({
 // ======================
 // Middleware
 // ======================
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://tamil-nadu-tourism.vercel.app", "http://localhost:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // ======================
