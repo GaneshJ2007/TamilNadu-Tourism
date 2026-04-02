@@ -23,13 +23,7 @@ const groq = new Groq({
 // ======================
 // Middleware
 // ======================
-// 🌍 Universal CORS mode for maximum mobile compatibility
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
-app.options("*", cors());
+app.use(cors()); // Allow all origins for simplicity and mobile compatibility
 app.use(express.json());
 
 // ======================
