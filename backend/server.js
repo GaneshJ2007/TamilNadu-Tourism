@@ -23,15 +23,12 @@ const groq = new Groq({
 // ======================
 // Middleware
 // ======================
-app.use(
-  cors({
-    origin: ["https://tamil-nadu-tourism.vercel.app", "http://localhost:5173"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
-// Explicitly handle preflight requests for mobile browsers
+// 🌍 Universal CORS mode for maximum mobile compatibility
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 app.options("*", cors());
 app.use(express.json());
 
