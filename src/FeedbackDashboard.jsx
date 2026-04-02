@@ -42,12 +42,12 @@ export default function FeedbackDashboard() {
   const fetchAnalytics = async () => {
     try {
       // Fetch analytics data
-      const analyticsRes = await axios.get("http://localhost:5000/api/feedback/analytics");
+      const analyticsRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL || "${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}"}/api/feedback/analytics`);
       console.log("📊 Analytics data received:", analyticsRes.data); // ✅ Debug log
       setAnalytics(analyticsRes.data);
 
       // Fetch all feedbacks
-      const feedbacksRes = await axios.get("http://localhost:5000/api/feedback");
+      const feedbacksRes = await axios.get(`${import.meta.env.VITE_API_BASE_URL || "${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}"}/api/feedback`);
       console.log("📝 Feedbacks received:", feedbacksRes.data); // ✅ Debug log
       setFeedbacks(feedbacksRes.data);
 
@@ -62,7 +62,7 @@ export default function FeedbackDashboard() {
   const generateReport = async () => {
     setLoadingReport(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/feedback/report");
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || "${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}"}/api/feedback/report`);
       setReport(res.data.report || "No report generated.");
     } catch (err) {
       console.error("Error generating report:", err);

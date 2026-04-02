@@ -52,7 +52,7 @@ export default function Chatbot() {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/chatbot', { message: userMessage });
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL || "${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}"}/api/chatbot`, { message: userMessage });
       setMessages((prev) => [...prev, { sender: 'bot', text: response.data.reply }]);
     } catch (error) {
       setMessages((prev) => [...prev, { sender: 'bot', text: 'Sorry, I am having trouble connecting to the server.' }]);

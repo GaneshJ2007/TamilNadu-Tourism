@@ -45,7 +45,7 @@ const Marketplace = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/vendor-items");
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || "${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}"}/api/vendor-items`);
         setVendorItems(res.data);
       } catch (err) {
         console.error("Error fetching vendor items:", err);
@@ -85,10 +85,10 @@ const Marketplace = () => {
         alert("You must be logged in as a vendor to delete items.");
         return;
       }
-      await axios.delete(`http://localhost:5000/api/vendor-items/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}/api/vendor-items/${id}`, {
         headers: { Authorization: `Bearer ${vt.token}` },
       });
-      const res = await axios.get("http://localhost:5000/api/vendor-items");
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || "${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}"}/api/vendor-items`);
       setVendorItems(res.data);
     } catch (err) {
       console.error("Error deleting item:", err);

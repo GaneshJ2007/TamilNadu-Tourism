@@ -30,7 +30,7 @@ const Cart = () => {
       // Fallback: fetch last order if no state (optional, or just show empty)
       const fetchOrders = async () => {
         try {
-          const res = await axios.get(`http://localhost:5000/api/orders/${userId}`);
+          const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}/api/orders/${userId}`);
           if (res.data.length > 0) {
             const latestOrder = res.data[0];
             setCartItems(
@@ -142,7 +142,7 @@ const Cart = () => {
         }
       };
 
-      const res = await axios.post("http://localhost:5000/api/orders", orderData);
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL || "${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}"}/api/orders`, orderData);
       console.log("✅ Order Placed:", res.data);
 
       setShowCheckoutForm(false);

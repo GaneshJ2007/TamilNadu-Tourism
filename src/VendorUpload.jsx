@@ -45,7 +45,7 @@ export default function VendorUpload() {
     if (!email) return;
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/vendor-items/vendor/${email}`
+        `${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}/api/vendor-items/vendor/${email}`
       );
       setVendorItems(res.data);
     } catch (err) {
@@ -85,7 +85,7 @@ export default function VendorUpload() {
         vendorName: vendorName,
       };
 
-      await axios.post("http://localhost:5000/api/vendor-items", payload, {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL || "${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}"}/api/vendor-items`, payload, {
         headers: { Authorization: `Bearer ${token.token}` },
       });
 
@@ -110,7 +110,7 @@ export default function VendorUpload() {
       const tokenStr = localStorage.getItem("vendor_token");
       const token = tokenStr ? JSON.parse(tokenStr) : null;
 
-      await axios.delete(`http://localhost:5000/api/vendor-items/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}/api/vendor-items/${id}`, {
         headers: { Authorization: `Bearer ${token.token}` },
       });
 
