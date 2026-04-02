@@ -27,9 +27,12 @@ app.use(
   cors({
     origin: ["https://tamil-nadu-tourism.vercel.app", "http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
+// Explicitly handle preflight requests for mobile browsers
+app.options("*", cors());
 app.use(express.json());
 
 // ======================
